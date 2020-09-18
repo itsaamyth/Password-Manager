@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/dashboard">Password Manager</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/dashboard">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown" data-toggle="dropdown" href="/passworCategory">Password Category
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/add-new-category">Add New Category</a></li>
+            <li><a href="/passwordCategory">View All Category</a></li>
+          </ul>
+        </li>
+        <li><a class="dropdown" data-toggle="dropdown" href="/passworCategory">Password Details
+         </a>
+          <ul class="dropdown-menu">
+            <li><a href="/add-new-password">Add New Password</a></li>
+            <li><a href="/view-all-password">View All Passwords</a></li>
+          </ul>
+        </li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <div class="navbar-header" style="float: right;">
+        <a class="navbar-brand" href="#">Loggedin as: <% if(loginUser){%> <%= loginUser %> <%} %> </a>
+      </div>
+    </div>
+  </nav>
