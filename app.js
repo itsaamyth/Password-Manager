@@ -5,6 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var dashboardRouter = require('./routes/dashboard');
+var addNewCategoryRouter = require('./routes/add-new-category');
+var passwordCategoryRouter = require('./routes/passwordCategory');
+var addNewPasswordRouter = require('./routes/add-new-password');
+var viewAllPasswordRouter = require('./routes/view-all-password');
+var passwordDetailRouter = require('./routes/password-detail');
+var joinRouter = require('./routes/join');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -20,6 +27,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/add-new-category', addNewCategoryRouter);
+app.use('/passwordCategory', passwordCategoryRouter);
+app.use('/add-new-password',addNewPasswordRouter)
+app.use('/view-all-password',viewAllPasswordRouter)
+app.use('/password-detail',passwordDetailRouter)
+app.use('/join',joinRouter)
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
