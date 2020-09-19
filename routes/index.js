@@ -121,7 +121,8 @@ router.post('/signup', checkUsername,checkEmail,function(req, res, next) {  //no
 //-----Password Page----
 router.get('/passwordCategory', checkLoginUser,function(req, res, next) {  //checkLoginUser is the middleware to check if user is signed in or not by comparing it with localstorage temp data -----------//
   var loginUser = localStorage.getItem('loginUser') //fetching the name of the user from localstorage that we made in login route
-  getPassCat.exec(function(err,data){
+  getPassCat.find({username:loginUser},function(err,data){
+  // getPassCat.exec(function(err,data){
     if(err) throw err
     res.render('password_category', { title: 'Password Management System',loginUser :loginUser ,records:data});//this will store name of user in loginUser and loginUser will be displayed at further pages
   })
@@ -174,7 +175,8 @@ router.post('/add-new-category', checkLoginUser,[check('passwordCategory','Enter
   else{
     var passCatName = req.body.passwordCategory
     var passcatDetails = new passCatModel({
-      password_category:passCatName
+      password_category:passCatName,
+      username:loginUser
     })
     passcatDetails.save(function(err,doc){
       if(err)throw err
@@ -192,6 +194,7 @@ router.post('/add-new-password', checkLoginUser,function(req, res, next) {
   var password_details = new passModel({
     password_category:pass_cat,
     project_name:project_name,
+    username:loginUser,
     password_details:pass_details
   })
     password_details.save(function(err,doc){
@@ -213,7 +216,8 @@ router.get('/add-new-password', checkLoginUser,function(req, res, next) {
 //-----View All Password----
 router.get('/view-all-password', checkLoginUser,function(req, res, next) {
   var loginUser = localStorage.getItem('loginUser')
-  getAllPass.exec(function(err,data){
+  getAllPass.find({username:loginUser},function(err,data){
+  // getAllPass.exec(function(err,data){
   if(err) throw err
   res.render('viewAllPassword', { title: 'Password Management System' ,loginUser :loginUser,records:data});
   })

@@ -8,6 +8,9 @@ var passcatScheme= new mongoose.Schema({
         index:{
             unique:true,
         }},
+    username:{
+      type:String
+    },
     date:{
         type:Date,
         default:Date.now

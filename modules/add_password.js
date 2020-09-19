@@ -10,6 +10,9 @@ var passScheme= new mongoose.Schema({
             type:String,
             required:true,
     },
+    username:{
+        type:String
+      },
     password_details:{
             type:String,
             required:true,
