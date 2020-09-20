@@ -55,10 +55,23 @@ function checkLoginUser(req,res,next){
   next()
 }
 
+//---------middleware to check if Email already Exist in DB for Signup -----------//
+// function checkCategory(req,res,next){ 
+//   var passcat = req.body.passwordCategory
+//   var checkexistcat =  passCatModel.findOne({password_category:passcat})
+//   checkexistcat.exec((err,data)=>{
+//     if(err)throw err 
+//     if(data){
+//     return  res.render('addNewCategory', { title: 'Password Management System',loginUser:loginUser,errors:"Category Already Exist !!"}); //this will print error on html page otherthan console
+//     }
+//     next()
+//   })
+// }
+
 //-----Add New Category----
-router.get('/', checkLoginUser,function(req, res, next) {
+router.get('/',checkLoginUser,function(req, res, next) {
     var loginUser = localStorage.getItem('loginUser')
-      res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:'',success:'' });
+      res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:'',success:''});
   });
   
   router.post('/', checkLoginUser,[check('passwordCategory','Enter Password Category Name').isLength({ min: 1 })],function(req, res, next) {
@@ -66,19 +79,28 @@ router.get('/', checkLoginUser,function(req, res, next) {
     const errors = validationResult(req);
     
     if (!errors.isEmpty()) {
-      res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:errors.mapped() ,success:''});
+      res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:"Please Fill the Category Field !" ,success:''});
     }
     else{
       var passCatName = req.body.passwordCategory
-      var passcatDetails = new passCatModel({
-        password_category:passCatName,
-        username:loginUser
-      })
-      passcatDetails.save(function(err,doc){
+      getPassCat.find({password_category:passCatName},function(err,data){
         if(err)throw err
-        res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:'',success:'Password Category Inserted Successfully' });
-      })
+        if(data){
+          return  res.render('addNewCategory', { title: 'Password Management System',loginUser:loginUser,errors:"Category Already Exist !",success:''}); 
+        }
+        else{
+          var passcatDetails = new passCatModel({
+            password_category:passCatName,
+            username:loginUser
+          })
+          passcatDetails.save(function(err,doc){
+            if(err)throw err
+            res.render('addNewCategory', { title: 'Password Management System',loginUser :loginUser,errors:'',success:'Password Category Inserted Successfully !' });
+          })
+        }
+       })
     }
   });
+
 
 module.exports = router;

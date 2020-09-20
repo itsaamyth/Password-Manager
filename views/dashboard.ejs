@@ -2,21 +2,114 @@
 <html lang="en">
 <head>
     <title><%= title %></title>
+    <!-- Latest compiled and minified CSS -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/58b8e1a00a.js" crossorigin="anonymous"></script> 
+    <style>
+        .info-box {
+            display: block;
+            min-height: 90px;
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin-bottom: 15px;
+            border: 3px solid #4dc0ef;
+        }
+        .warning-box{
+          display: block;
+            min-height: 90px;
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin-bottom: 15px;
+            border: 3px solid #ff9800;
+        }
+        .bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+            background-color: #00c0ef !important;
+            color: #fff !important;
+        }
+        .bg-warning{background-color: #ff9800 !important;
+            color: #fff !important;}
+        .info-box-content {
+            padding: 5px 10px;
+            margin-left: 90px;
+        }
+        .info-box-icon {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 2px;
+            display: block;
+            float: left;
+            height: 87px;
+            width: 90px;
+            text-align: center;
+            font-size: 45px;
+            line-height: 90px;
+            background: rgba(0,0,0,0.2);
+        }
+        .info-box-text {
+            display: block;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .info-box-number {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        </style>
 </head>
 <body>
     <%- include('header') %> 
     <!-- common header included from header.ejs -->
-    <div class="container">
+    <div  class="container">
+        <h3 style="margin-top: 20px;">Your Dashboard</h3>
         <div class="row">
-            <h1>User Dashboard</h1>
             <br>
+            <div class="col-sm-4 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="fa fa-list-alt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Password Category</span>
+                        <span class="info-box-number"><%= totalPassCat %></span>
+                        <span><a href="/passwordCategory">view all</a></span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="warning-box">
+                  <span class="info-box-icon bg-warning"><i class="fa fa-key"></i></span>
+                  <div class="info-box-content">
+                      <span class="info-box-text">Total Passwords</span>
+                      <span class="info-box-number"><%= totalPassword %></span>
+                      <span><a href="/passwordCategory">view all</a></span>
+                  </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+          </div>
+
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  
   
 </body>
 </html>

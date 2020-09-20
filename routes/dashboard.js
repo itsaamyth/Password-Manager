@@ -57,8 +57,13 @@ function checkLoginUser(req,res,next){
 
 //-----Dashboard Page----
 router.get('/', checkLoginUser,function(req, res, next) {
-    var loginUser = localStorage.getItem('loginUser')
-    res.render('dashboard', { title: 'Password Management System',loginUser :loginUser,msg:''});
+  var loginUser=localStorage.getItem('loginUser');
+  passModel.find({username:loginUser}).countDocuments({}).exec((err,count)=>{
+    // getPassCat.find({username:loginUser},function(err,data1){
+    passCatModel.find({username:loginUser}).countDocuments({}).exec((err,countpasscat)=>{    
+  res.render('dashboard', { title: 'Password Management System', loginUser:loginUser,msg:'',totalPassword:count, totalPassCat:countpasscat });
   });
+});
+});
 
 module.exports = router;

@@ -24,7 +24,7 @@ function checkEmail(req,res,next){
   checkexistemail.exec((err,data)=>{
     if(err)throw err 
     if(data){
-    return  res.render('signup', { title: 'Password Management System',msg:"Email Already Exist !!"}); //this will print error on html page otherthan console
+    return  res.render('signup', { title: 'Password Management System',msg:"Email Already Exist !!",success:''}); //this will print error on html page otherthan console
     }
     next()
   })
@@ -37,7 +37,7 @@ function checkUsername(req,res,next){
   checkexistuname.exec((err,data)=>{
     if(err)throw err
     if(data){
-    return  res.render('signup', { title: 'Password Management System',msg:"Username Already Exist !!"}); 
+    return  res.render('signup', { title: 'Password Management System',msg:"Username Already Exist !!",success:''}); 
     }
     next()
   })
@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
     res.redirect('./dashboard')
   }
   else{
-    res.render('index', { title: 'Password Management System',msg:"" });
+    res.render('index', { title: 'Password Management System',msg:"" ,success:''});
   }
 });
 router.post('/', function(req, res, next) {
@@ -81,7 +81,7 @@ router.post('/', function(req, res, next) {
     res.redirect('/dashboard')
     // res.render('index', { title: 'Password Management System',msg:"Logged in Sucessfully" });
   }else{
-    res.render('index', { title: 'Password Management System',msg:"Invalid Username and Password" });
+    res.render('index', { title: 'Password Management System',msg:"Invalid Username and Password" ,success:''});
   }
   })
 });
@@ -93,7 +93,7 @@ router.get('/signup', function(req, res, next) {
       res.redirect('./dashboard')
     }
     else{
-      res.render('signup', { title: 'Password Management System',msg:'' });
+      res.render('signup', { title: 'Password Management System',msg:'',success:'' });
     }
 });
 router.post('/signup', checkUsername,checkEmail,function(req, res, next) {  //note:- we are using these middlewere here so that our error will not be printed in console and server will not be stopped it will be displayed in form
@@ -103,7 +103,7 @@ router.post('/signup', checkUsername,checkEmail,function(req, res, next) {  //no
   var confpassword= req.body.confpassword
 
   if(password != confpassword){
-    res.render('signup', { title: 'Password Management System',msg:"Password not matched"});
+    res.render('signup', { title: 'Password Management System',msg:"Password not matched",success:''});
   }
   else{
   password=bcrypt.hashSync(req.body.password,10) //Password Encrypter Activator with Length-10, we are using this so that DB Admin can't see the password
@@ -114,7 +114,7 @@ router.post('/signup', checkUsername,checkEmail,function(req, res, next) {  //no
   })
   userDetails.save((err,doc)=>{
     if(err)throw err
-    res.render('signup', { title: 'Password Management System',msg:"User Registered Successfully"});
+    res.render('signup', { title: 'Password Management System',success:"User Registered Successfully",msg:''});
   }) //now last step, saving it 
 }
 });

@@ -8,6 +8,7 @@ var passCatModel = require('../modules/password_category')
 var passModel = require('../modules/add_password')
 var getPassCat = passCatModel.find({})
 var getAllPass = passModel.find({})
+
 const { response } = require('express');
 const { body, validationResult, check } = require('express-validator');
 const { count } = require('../modules/user');

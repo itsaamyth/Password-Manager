@@ -65,7 +65,8 @@ router.get('/', checkLoginUser,function(req, res, next) {
     var getPassDetails = passModel.findById({_id:id})
     getPassDetails.exec(function(err,data){
     if(err) throw err
-    getPassCat.exec(function(err,data1){
+    // getPassCat.exec(function(err,data1){
+    getPassCat.find({username:loginUser},function(err,data1){
       res.render('edit_password_detail', { title: 'Password Management System' ,loginUser :loginUser,records:data1,record:data,success:''});
     })
     })

@@ -67,7 +67,8 @@ router.post('/', checkLoginUser,function(req, res, next) {
       password_details:pass_details
     })
       password_details.save(function(err,doc){
-        getPassCat.exec(function(err,data){
+        // getPassCat.exec(function(err,data){
+        getPassCat.find({username:loginUser},function(err,data){
           if(err) throw err
         res.render('addNewPassword', { title: 'Password Management System' ,loginUser :loginUser,records:data,success:"Password Details Inserted Successfully"});
       })
@@ -76,7 +77,8 @@ router.post('/', checkLoginUser,function(req, res, next) {
   
   router.get('/', checkLoginUser,function(req, res, next) {
     var loginUser = localStorage.getItem('loginUser')
-    getPassCat.exec(function(err,data){
+    getPassCat.find({username:loginUser},function(err,data){
+    // getPassCat.exec(function(err,data){
       if(err) throw err
       res.render('addNewPassword', { title: 'Password Management System' ,loginUser :loginUser,records:data,success:''});
     })

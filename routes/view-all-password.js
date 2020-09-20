@@ -58,7 +58,7 @@ function checkLoginUser(req,res,next){
 //-----------with Javascript Pageination-----------------------//
 router.get('/', checkLoginUser,function(req, res, next) {
     var loginUser = localStorage.getItem('loginUser')
-    var perPage = 2
+    var perPage = 10
     var page = req.params.page || 1
     getAllPass.skip((perPage * page)-perPage).limit(perPage).find({username:loginUser},function(err,data){
     // getAllPass.exec(function(err,data){
