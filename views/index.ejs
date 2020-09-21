@@ -18,21 +18,26 @@
               <div class="card-body">
                       <form action="/" id="EmployeeForm" method="post"  role="form" >
                         <div class="form-group">
-                          <% if(msg != ''){ %>
-                          <div id="signupalert" role="alert" class="alert alert-danger">
-                              <p><%= msg %></p>
-                              <span></span>
-                          </div>
-                          <% } %>
+                          <% if(msg != '') { %>
+                            <div class="alert alert-danger" role="alert">
+                              <strong>Error !</strong> <%= msg %>
+                            </div>
+                            <% } %>
+                            <% if(success != ''){ %>
+                              <div class="alert alert-success" role="alert">
+                                <strong>Success.</strong> <%= success %>
+                              </div>
+                              <% } %>
+                          
                               
                               <label for="Username" >User Name</label>
                               <div >
-                                  <input type="text" class="form-control" name="uname" placeholder="Enter Your Username">
+                                  <input type="text" class="form-control"  name="uname"  placeholder="Enter Your Username" required>
                               </div>
                         
                               <label for="password" >Password</label>
                               <div >
-                                  <input type="password" class="form-control" name="password" placeholder="Enter your Password">
+                                  <input type="password" class="form-control" name="password" placeholder="Enter your Password" required>
                               </div>
                         </div>
                               <div class="form-group">

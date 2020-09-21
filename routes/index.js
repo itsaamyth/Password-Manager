@@ -42,6 +42,17 @@ function checkUsername(req,res,next){
     next()
   })
 }
+function verifyusername(req,res,next){
+  var uname  = req.body.uname
+  var checkUsername = userModule.findOne({username:uname})
+  checkUsername.exec((err,data)=>{
+    if(err)throw(err)
+    if(!data){
+      return  res.render('index', { title: 'Password Management System',msg:"Invalid Username !!",success:''}); //this will print error on html page otherthan console
+      }
+    next()
+  })
+}
 
 //---------middleware to check if user is signed in or not by comparing it with localstorage temp data -----------//
 function checkLoginUser(req,res,next){
@@ -66,7 +77,7 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Password Management System',msg:"" ,success:''});
   }
 });
-router.post('/', function(req, res, next) {
+router.post('/', verifyusername,function(req, res, next) {
   var username = req.body.uname //importing username from html form
   var password = req.body.password //importing password from html form
   var checkUser = userModule.findOne({username:username}) //this function will find that username in db 
