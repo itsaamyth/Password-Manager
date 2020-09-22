@@ -4,6 +4,8 @@
   <title>Password Manager</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
+  <link rel="stylesheet" href="/public/stylesheets/index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -11,10 +13,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="col-md-6" style="margin: 0 auto;float: none;margin-top: 20px;">
-        <h2 class="text-center">Password Manager</h2>
-          <div id="loginbox" style="margin-top:50px" class="card">
-            <h5 style="background-color: #31708f;color: white;" class="card-header">Please Login</h5>
+        <div class="col-md-5" style="margin: 0 auto;float: none;margin-top: 20px;">
+        <!-- <h2 style="color: white;" class="text-center">Password Manager</h2> -->
+          <div id="loginbox" class="card">
+            <img class="card-img-top" src="/public/images/loginbg2.jpg" alt="Card image cap">
+            <h3><span style="font-weight:100;">Welcome to </span> PassMan</h3>
+            <!-- <h5 style="background-color: #31708f;color: white;" class="card-header">Please Login</h5> -->
               <div class="card-body">
                       <form action="/" id="EmployeeForm" method="post"  role="form" >
                         <div class="form-group">
@@ -29,13 +33,15 @@
                               </div>
                               <% } %>
                           
-                              
-                              <label for="Username" >User Name</label>
+                              <div>
+                                <h6 style="margin-top: -20px;">Please Login</h6>
+                              </div>
+                              <!-- <label for="Username" >User Name</label> -->
                               <div >
-                                  <input type="text" class="form-control"  name="uname"  placeholder="Enter Your Username" required>
+                                  <input type="text" class="form-control" style="margin-bottom: 15px;" name="uname"  placeholder="Enter Your Username" required>
                               </div>
                         
-                              <label for="password" >Password</label>
+                              <!-- <label for="password" >Password</label> -->
                               <div >
                                   <input type="password" class="form-control" name="password" placeholder="Enter your Password" required>
                               </div>
@@ -43,10 +49,10 @@
                               <div class="form-group">
                                 <!-- Button -->                                        
                                 <div class="vertical-center" >
-                                <input type="submit" style="background-color: #31708f;border: none;width: 200px;margin: 0;float: none;margin-top: 2px;" name="submit" value="Login" class="btn btn-primary">   
+                                <input type="submit" style="background-color: #6610f2;border: none;width: 200px;margin: 0;float: none;margin-top: 2px;" name="submit" value="Login" class="btn btn-primary">   
                                 </div>
                             </div>
-                          <p style="margin-top: 10px;">If you don't have an account <a href="/signup">Create New Account</a> </p>
+                          <p style="margin-top: 10px;">Don't you have an account please <a href="/signup">Create New Account</a> </p>
                       </form>
                       </div>
               </div>
